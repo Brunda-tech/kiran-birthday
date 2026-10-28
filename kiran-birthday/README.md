@@ -14,9 +14,9 @@ Open `index.html` in a browser, or in VS Code right-click it and choose "Open wi
 ## Deploy with GitHub Pages
 
 The repository's GitHub Actions workflow publishes this folder automatically
-when changes are pushed to `main`. In the repository settings, open
-**Settings > Pages** and set the build and deployment source to **GitHub Actions**
-if it is not already selected.
+when changes are pushed to `main` and attempts to enable Pages. If GitHub
+permissions prevent that, a repository admin must open **Settings > Pages**
+and set the build and deployment source to **GitHub Actions**.
 
 The site will be available at
 https://brunda-tech.github.io/kiran-birthday/ after the workflow completes.

@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Happy Birthday, Kiran Kumar!</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;1,600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0e0a1f; --bg2:#1a1038; --card:rgba(255,255,255,.06); --line:rgba(255,255,255,.14);
+    --text:#f4f0ff; --muted:#b9b0d9; --gold:#ffd166; --coral:#ff6b8b; --teal:#4fe3d0; --violet:#8b6bff;
+    --serif:'Playfair Display',Georgia,serif; --sans:'Poppins',system-ui,-apple-system,Segoe UI,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--sans);color:var(--text);background:var(--bg);line-height:1.65;overflow-x:hidden}
+  body.locked{overflow:hidden;height:100vh}
+  .bg{position:fixed;inset:0;z-index:-2;background:
+      radial-gradient(60vmax 60vmax at 15% 10%,rgba(139,107,255,.35),transparent 60%),
+      radial-gradient(50vmax 50vmax at 90% 30%,rgba(255,107,139,.25),transparent 60%),
+      radial-gradient(60vmax 60vmax at 50% 100%,rgba(79,227,208,.18),transparent 60%),var(--bg);
+    animation:drift 18s ease-in-out infinite alternate}
+  @keyframes drift{to{filter:hue-rotate(25deg) saturate(1.2)}}
+  .floaters{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+  .floaters span{position:absolute;bottom:-60px;font-size:28px;opacity:.55;animation:rise linear infinite}
+  @keyframes rise{to{transform:translateY(-120vh) rotate(25deg)}}
+  canvas#confetti{position:fixed;inset:0;z-index:50;pointer-events:none}
+
+  /* gate */
+  #gate{position:fixed;inset:0;z-index:40;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;
+    background:radial-gradient(circle at 50% 40%,#2a1a5e,#0e0a1f 70%);transition:opacity .8s ease,visibility .8s}
+  #gate.hide{opacity:0;visibility:hidden}
+  #gate .gift{font-size:84px;animation:bounce 1.6s ease-in-out infinite}
+  @keyframes bounce{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-16px) rotate(4deg)}}
+  #gate h1{font-family:var(--serif);font-weight:600;font-size:clamp(26px,6vw,44px);margin:18px 0 6px}
+  #gate p{color:var(--muted);margin-bottom:28px}
+  .btn{font-family:var(--sans);font-weight:600;font-size:16px;color:#1b1030;border:0;cursor:pointer;padding:14px 30px;border-radius:999px;
+    background:linear-gradient(135deg,var(--gold),#ff9f6b);box-shadow:0 10px 30px rgba(255,159,107,.35);transition:transform .2s,box-shadow .2s}
+  .btn:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 14px 36px rgba(255,159,107,.5)}
+  .btn:focus-visible,.tab:focus-visible{outline:3px solid var(--teal);outline-offset:3px}
+
+  section{max-width:1000px;margin:0 auto;padding:90px 22px}
+  .eyebrow{letter-spacing:.3em;text-transform:uppercase;font-size:12px;color:var(--teal);font-weight:500}
+  h2{font-family:var(--serif);font-size:clamp(30px,6vw,48px);line-height:1.15;margin:10px 0 18px}
+  .lead{color:var(--muted);max-width:640px;font-size:17px}
+  .reveal{opacity:0;transform:translateY(30px);transition:opacity .9s ease,transform .9s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  /* hero */
+  #hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+  #hero .hb{font-family:var(--serif);font-style:italic;font-size:clamp(24px,5vw,38px);color:var(--gold)}
+  #hero h1{font-family:var(--serif);font-weight:800;font-size:clamp(46px,12vw,120px);line-height:1;margin:6px 0 18px;
+    background:linear-gradient(120deg,#fff,var(--gold) 40%,var(--coral));-webkit-background-clip:text;background-clip:text;color:transparent;
+    background-size:200% auto;animation:shine 5s linear infinite}
+  @keyframes shine{to{background-position:200% center}}
+  .typed{font-size:clamp(16px,3.4vw,24px);color:var(--muted);min-height:1.8em}
+  .typed b{color:var(--text);font-weight:500;border-right:2px solid var(--gold);padding-right:3px;animation:blink 1s steps(1) infinite}
+  @keyframes blink{50%{border-color:transparent}}
+  .scroll{margin-top:44px;color:var(--muted);font-size:13px;letter-spacing:.2em;animation:bounce 2s infinite}
+
+  /* stats */
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-top:34px}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px;backdrop-filter:blur(8px)}
+  .stat .n{font-family:var(--serif);font-size:48px;font-weight:800;color:var(--gold);line-height:1}
+  .stat .l{color:var(--muted);font-size:14px;margin-top:8px}
+
+  /* memories */
+  .tabs{display:flex;flex-wrap:wrap;gap:10px;margin:30px 0 22px}
+  .tab{font-family:var(--sans);font-size:14px;font-weight:500;color:var(--text);background:var(--card);border:1px solid var(--line);
+    border-radius:999px;padding:10px 18px;cursor:pointer;transition:all .25s}
+  .tab:hover{border-color:var(--gold)}
+  .tab[aria-selected="true"]{background:linear-gradient(135deg,var(--violet),var(--coral));border-color:transparent;box-shadow:0 8px 24px rgba(139,107,255,.4)}
+  .memory{display:grid;grid-template-columns:1.15fr 1fr;gap:26px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:26px;padding:20px;min-height:360px}
+  .memory .frame{border-radius:18px;overflow:hidden;background:#000;box-shadow:0 20px 50px rgba(0,0,0,.45);transform:rotate(-1.5deg);transition:transform .4s}
+  .memory .frame:hover{transform:rotate(0)}
+  .memory img{display:block;width:100%;height:auto;max-height:480px;object-fit:cover}
+  .memory .txt h3{font-family:var(--serif);font-size:28px;margin-bottom:10px;color:var(--gold)}
+  .memory .txt p{color:var(--muted)}
+  .memory .txt .num{font-size:13px;letter-spacing:.25em;color:var(--teal);margin-bottom:6px}
+  .memory.swap{animation:swap .55s ease}
+  @keyframes swap{from{opacity:0;transform:translateY(14px) scale(.98)}to{opacity:1;transform:none}}
+  .next{margin-top:22px;background:none;border:1px solid var(--line);color:var(--text);font-family:var(--sans);padding:10px 20px;border-radius:999px;cursor:pointer;transition:all .2s}
+  .next:hover{border-color:var(--gold);color:var(--gold)}
+  @media(max-width:720px){.memory{grid-template-columns:1fr}}
+
+  /* about */
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-top:34px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:26px;transition:transform .3s,border-color .3s}
+  .card:hover{transform:translateY(-6px);border-color:var(--coral)}
+  .card .ic{font-size:34px;margin-bottom:10px}
+  .card h3{font-family:var(--serif);font-size:22px;margin-bottom:8px}
+  .card p{color:var(--muted);font-size:15px}
+
+  /* letter */
+  .letter{background:linear-gradient(160deg,rgba(255,255,255,.09),rgba(255,255,255,.03));border:1px solid var(--line);border-radius:28px;padding:clamp(24px,5vw,54px);margin-top:30px}
+  .letter p{margin-bottom:16px;font-size:17px}
+  .letter .sign{font-family:var(--serif);font-style:italic;font-size:24px;color:var(--gold);margin-top:22px}
+  .wish{text-align:center;margin-top:46px}
+  #wishMsg{margin-top:20px;font-family:var(--serif);font-size:clamp(22px,4vw,32px);color:var(--gold);min-height:1.5em}
+  footer{text-align:center;color:var(--muted);font-size:13px;padding:30px 20px 50px}
+
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body class="locked">
+<div class="bg"></div>
+<div class="floaters" id="floaters" aria-hidden="true"></div>
+<canvas id="confetti" aria-hidden="true"></canvas>
+
+<div id="gate">
+  <div class="gift">🎁</div>
+  <h1>Kiran, this is for you…</h1>
+  <p>A little surprise, made with love.</p>
+  <button class="btn" id="openBtn">Open your surprise ✨</button>
+</div>
+
+<main>
+  <section id="hero">
+    <div class="hb">Happy Birthday</div>
+    <h1>Kiran Kumar</h1>
+    <div class="typed" aria-live="polite"><b id="typed"></b></div>
+    <div class="scroll">SCROLL DOWN ↓</div>
+  </section>
+
+  <section id="who">
+    <div class="reveal">
+      <div class="eyebrow">Who is Kiran Kumar?</div>
+      <h2>Some people are just <em style="color:var(--gold)">family</em>, even without the same blood.</h2>
+      <p class="lead">Kiran is my brother from another mother, my best friend, and one of the most important people in my life. For sixteen years he has been there through every phase, every mood and every plan, and somehow he has always known exactly what I needed to hear.</p>
+    </div>
+    <div class="stats reveal">
+      <div class="stat"><div class="n" data-count="16">0</div><div class="l">years of friendship</div></div>
+      <div class="stat"><div class="n">1</div><div class="l">brother from another mother</div></div>
+      <div class="stat"><div class="n">∞</div><div class="l">times he believed in me first</div></div>
+      <div class="stat"><div class="n">100%</div><div class="l">always there</div></div>
+    </div>
+  </section>
+
+  <section id="memories">
+    <div class="reveal">
+      <div class="eyebrow">Our memories</div>
+      <h2>Tap a button. Take a trip back.</h2>
+      <p class="lead">Every picture holds a little piece of us. Click each one to open it.</p>
+    </div>
+    <div class="tabs reveal" role="tablist" id="tabs"></div>
+    <div class="memory" id="memory" aria-live="polite"></div>
+    <button class="next" id="nextBtn">Next memory →</button>
+  </section>
+
+  <section id="about">
+    <div class="reveal">
+      <div class="eyebrow">About him</div>
+      <h2>What Kiran means to me</h2>
+      <p class="lead">If I had to describe him in a few words, it would take pages. Here is the short version.</p>
+    </div>
+    <div class="cards">
+      <div class="card reveal"><div class="ic">🤝</div><h3>My brother from another mother</h3><p>Sixteen years and counting. We have grown up together, and with him I never have to pretend. He is simply family.</p></div>
+      <div class="card reveal"><div class="ic">🌟</div><h3>My biggest inspiration</h3><p>The way he keeps going, keeps working and keeps being kind makes me want to be a better person every single day.</p></div>
+      <div class="card reveal"><div class="ic">🛡️</div><h3>My biggest supporter</h3><p>In every win, he is the loudest cheer. In every low, he is the first to show up. That is rare, and I know it.</p></div>
+      <div class="card reveal"><div class="ic">🔥</div><h3>My motivator</h3><p>When I doubt myself, he believes in me even louder. A few words from him can change my entire day.</p></div>
+      <div class="card reveal"><div class="ic">😂</div><h3>My best friend</h3><p>The one who knows all the stories, all the inside jokes, and exactly when to make me laugh.</p></div>
+      <div class="card reveal"><div class="ic">💛</div><h3>My forever person</h3><p>Whatever life brings, one thing will never change: I will always be in his corner, just as he has always been in mine.</p></div>
+    </div>
+  </section>
+
+  <section id="letter">
+    <div class="reveal">
+      <div class="eyebrow">One last thing</div>
+      <h2>A little letter for you</h2>
+    </div>
+    <div class="letter reveal">
+      <p>Dear Kiran,</p>
+      <p>Sixteen years ago, I had no idea that one friendship would turn into the strongest support I would ever have. Thank you for every time you listened, every time you pushed me forward, and every time you simply stayed.</p>
+      <p>You have inspired me more than you know, and you have supported me even when I did not ask. Whatever I have achieved, a part of it belongs to you.</p>
+      <p>I hope this year gives you everything you have been working for, and more. Wherever you are heading, I will be right behind you, cheering the loudest.</p>
+      <p>Happy Birthday, brother. 💛</p>
+      <div class="sign">With all my love, Brunda</div>
+    </div>
+    <div class="wish reveal">
+      <button class="btn" id="wishBtn">🎂 Make a wish</button>
+      <div id="wishMsg"></div>
+    </div>
+  </section>
+</main>
+<footer>Made with ❤️ for Kiran Kumar</footer>
+
+<script>
+/* ---- EDIT THE MEMORIES HERE (title, story) ---- */
+const MEMORIES = [
+  {tab:"Festival Night", title:"Lights, crowds and us", img:"images/memory1.jpg",
+   text:"A packed festival, glowing decorations and noise everywhere, yet the best part was the people standing together in the middle of it all. Some memories don't need a reason, only the right company."},
+  {tab:"Pizza Time", title:"Good food, better company", img:"images/memory2.jpg",
+   text:"Some of our best conversations happen around food. The pizza disappears in minutes, but the laughter and the talking go on and on."},
+  {tab:"Campus Thursday", title:"An ordinary day made special", img:"images/memory3.jpg",
+   text:"A regular Thursday evening, a beautiful campus and a quick selfie. Ordinary days turn into favourite memories when the right people are in them."},
+  {tab:"Lecture Hall", title:"The best seats in the house", img:"images/memory4.jpg",
+   text:"A hall full of people, and still the only seats that matter are the ones next to your friends. Little moments like this are the ones I'll never forget."}
+];
+const LINES = ["A brother from another mother.","My best friend for 16 years.","My biggest inspiration.","My strongest supporter.","My motivator, always."];
+
+/* floating emojis */
+const fl=document.getElementById('floaters');
+['🎈','🎉','✨','🎂','💛','🎁','⭐','🎈'].forEach((e,i)=>{const s=document.createElement('span');s.textContent=e;
+  s.style.left=(6+i*12)+'%';s.style.animationDuration=(14+i*2.2)+'s';s.style.animationDelay=(-i*3)+'s';fl.appendChild(s)});
+
+/* confetti */
+const cv=document.getElementById('confetti'),cx=cv.getContext('2d');let parts=[],run=false;
+function size(){cv.width=innerWidth;cv.height=innerHeight}addEventListener('resize',size);size();
+function burst(n=160){const cols=['#ffd166','#ff6b8b','#4fe3d0','#8b6bff','#ffffff','#ff9f6b'];
+  for(let i=0;i<n;i++)parts.push({x:innerWidth/2+(Math.random()-.5)*200,y:innerHeight*.55,vx:(Math.random()-.5)*16,vy:-Math.random()*16-4,
+    s:Math.random()*8+4,c:cols[i%cols.length],r:Math.random()*6,vr:(Math.random()-.5)*.4,l:0});
+  if(!run){run=true;requestAnimationFrame(tick)}}
+function tick(){cx.clearRect(0,0,cv.width,cv.height);
+  parts.forEach(p=>{p.vy+=.35;p.x+=p.vx;p.y+=p.vy;p.vx*=.99;p.r+=p.vr;p.l++;
+    cx.save();cx.translate(p.x,p.y);cx.rotate(p.r);cx.fillStyle=p.c;cx.fillRect(-p.s/2,-p.s/4,p.s,p.s/2);cx.restore()});
+  parts=parts.filter(p=>p.y<cv.height+20&&p.l<260);
+  if(parts.length)requestAnimationFrame(tick);else{run=false;cx.clearRect(0,0,cv.width,cv.height)}}
+
+/* gate */
+document.getElementById('openBtn').addEventListener('click',()=>{
+  document.getElementById('gate').classList.add('hide');document.body.classList.remove('locked');
+  burst(220);setTimeout(()=>burst(120),700);startTyping()});
+
+/* typewriter */
+function startTyping(){const el=document.getElementById('typed');let li=0,ci=0,del=false;
+  (function step(){const w=LINES[li];el.textContent=w.slice(0,ci);
+    if(!del&&ci===w.length){del=true;return setTimeout(step,1700)}
+    if(del&&ci===0){del=false;li=(li+1)%LINES.length}
+    ci+=del?-1:1;setTimeout(step,del?30:65)})()}
+
+/* memories */
+const tabs=document.getElementById('tabs'),mem=document.getElementById('memory');let cur=0;
+MEMORIES.forEach((m,i)=>{const b=document.createElement('button');b.className='tab';b.setAttribute('role','tab');
+  b.textContent=(i+1)+'. '+m.tab;b.addEventListener('click',()=>show(i,true));tabs.appendChild(b)});
+function show(i,burstIt){cur=i;const m=MEMORIES[i];
+  [...tabs.children].forEach((t,k)=>t.setAttribute('aria-selected',k===i));
+  mem.innerHTML='<div class="frame"><img alt="Memory photo: '+m.tab+'" src="'+m.img+'"></div>'+
+    '<div class="txt"><div class="num">MEMORY 0'+(i+1)+'</div><h3>'+m.title+'</h3><p>'+m.text+'</p></div>';
+  mem.classList.remove('swap');void mem.offsetWidth;mem.classList.add('swap');if(burstIt)burst(40)}
+document.getElementById('nextBtn').addEventListener('click',()=>show((cur+1)%MEMORIES.length,true));
+show(0,false);
+
+/* reveal on scroll + counters */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');
+  const c=e.target.querySelector('[data-count]');if(c&&!c.dataset.done){c.dataset.done=1;const t=+c.dataset.count;let n=0;
+    const iv=setInterval(()=>{n++;c.textContent=n;if(n>=t)clearInterval(iv)},90)}
+  io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* wish */
+document.getElementById('wishBtn').addEventListener('click',()=>{
+  document.getElementById('wishMsg').textContent='May every wish you make come true, Kiran! 🎉';
+  burst(260);setTimeout(()=>burst(160),500)});
+</script>
+</body>
+</html>

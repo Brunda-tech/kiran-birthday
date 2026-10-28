@@ -12,13 +12,11 @@ Open `index.html` in a browser, or in VS Code right-click it and choose "Open wi
 - Replace a photo: put a new image in `images/` using the same file name
 
 ## Deploy with GitHub Pages
-1. Create a new repository on GitHub (for example `kiran-birthday`).
-2. In this folder run:
-   git init
-   git add .
-   git commit -m "Birthday website"
-   git branch -M main
-   git remote add origin https://github.com/<your-username>/kiran-birthday.git
-   git push -u origin main
-3. On GitHub open Settings > Pages, set Source to "Deploy from a branch", choose `main` and `/ (root)`, then Save.
-4. After a minute your site is live at https://<your-username>.github.io/kiran-birthday/
+
+The repository's GitHub Actions workflow publishes this folder automatically
+when changes are pushed to `main`. In the repository settings, open
+**Settings > Pages** and set the build and deployment source to **GitHub Actions**
+if it is not already selected.
+
+The site will be available at
+https://brunda-tech.github.io/kiran-birthday/ after the workflow completes.
